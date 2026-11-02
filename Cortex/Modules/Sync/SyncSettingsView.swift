@@ -66,7 +66,7 @@ struct SyncSettingsView: View {
     @ViewBuilder
     private var setup: some View {
         Section("Sync") {
-            Text("Copies clips, snippets and your own quick actions between two Macs through a server on your Tailnet. Everything is encrypted on the Mac with a key only your Macs have; the server holds ciphertext. Switch Sync on above, then set it up.")
+            Text("Copies clips, snippets and your own quick actions between your devices through a server you run yourself. Everything is encrypted on the device with a key only your devices have; the server holds ciphertext. Switch Sync on above, then set it up.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
             Picker("", selection: $mode) {

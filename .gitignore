@@ -11,5 +11,5 @@ DerivedData/
 xcuserdata/
 *.xcuserstate
 .swiftpm/
-
+*.dmg
 .DS_Store

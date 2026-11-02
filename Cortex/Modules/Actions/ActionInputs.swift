@@ -9,7 +9,16 @@ extension ResolvedActionInput {
             of: pasteboard, types: (pasteboard.types ?? []).map(\.rawValue), source: nil)
         return ResolvedActionInput(
             input: snapshot.map(ActionInput.init) ?? .none, source: .pasteboard, problem: problem,
-            isSensitive: snapshot?.isSensitive ?? false)
+            isSensitive: snapshot.map(isSensitive) ?? false)
+    }
+
+    /// Marked by the app that wrote it, or text that looks like a password or
+    /// key: the history's detector only sees what it records, and this input
+    /// is read from the pasteboard.
+    private static func isSensitive(_ snapshot: ClipSnapshot) -> Bool {
+        if snapshot.isSensitive { return true }
+        guard snapshot.kind == .text || snapshot.kind == .richText, let text = snapshot.plainText else { return false }
+        return SensitiveTextDetector.looksSensitive(text)
     }
 }
 

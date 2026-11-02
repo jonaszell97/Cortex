@@ -1,6 +1,6 @@
 # Sync
 
-Sync keeps clips, snippets, the reading list, the knowledge base and your quick action files in step across two or more Macs through a small server you run yourself. Everything is encrypted on the Mac before it leaves, with a key that only your Macs have; the server holds ciphertext. Each Mac keeps a complete local database, and the server is only a mailbox: if it is down or unreachable, the palette, recording, snippets and actions behave as if sync did not exist, and the only visible change is a line in the status menu. Sync is off by default. This page is about using the module; the wire protocol, the cycle and the cryptography are in [SYNC.md](../SYNC.md).
+Sync keeps clips, snippets, the reading list, the knowledge base and your quick action files in step across two or more Macs through a small server you run yourself. Everything is encrypted on the Mac before it leaves, with a key that only your devices have; the server holds ciphertext. Each Mac keeps a complete local database, and the server is only a mailbox: if it is down or unreachable, the palette, recording, snippets and actions behave as if sync did not exist, and the only visible change is a line in the status menu. Sync is off by default. This page is about using the module; the wire protocol, the cycle and the cryptography are in [SYNC.md](../SYNC.md).
 
 ## Using it
 

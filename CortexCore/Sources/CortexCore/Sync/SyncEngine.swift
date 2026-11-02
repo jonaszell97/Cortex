@@ -27,7 +27,7 @@ public enum SyncEngineError: Error, Equatable, CustomStringConvertible, Localize
 
     public var description: String {
         switch self {
-        case .unreachable: "Server unreachable — is Tailscale connected?"
+        case .unreachable: "Server unreachable — check your network or VPN"
         case .unauthorized: "Token rejected"
         case .keyMismatch: "Sync key doesn't match"
         case .updateRequired: "Update Cortex on this Mac"

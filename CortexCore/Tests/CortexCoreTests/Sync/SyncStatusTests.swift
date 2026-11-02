@@ -26,7 +26,7 @@ import CortexCore
     }
 
     @Test func failuresUseThePlainWordsOfThePlan() {
-        #expect(SyncFailure(SyncEngineError.unreachable).detail == "Server unreachable — is Tailscale connected?")
+        #expect(SyncFailure(SyncEngineError.unreachable).detail == "Server unreachable — check your network or VPN")
         #expect(SyncFailure(SyncEngineError.unauthorized).detail == "Token rejected")
         #expect(SyncFailure(SyncEngineError.keyMismatch).detail == "Sync key doesn't match")
         #expect(SyncFailure(SyncEngineError.updateRequired).detail == "Update Cortex on this Mac")

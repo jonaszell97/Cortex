@@ -12,7 +12,7 @@ Sync is optional and off by default. It copies records between the local databas
 | --- | --- | --- |
 | Model | Each Mac keeps its own database. A cycle pulls the other Macs' changes, then pushes its own. Conflicts are resolved per record, last writer wins. | Eventual consistency is enough when the Macs are rarely used at the same moment. Nothing waits on the network. |
 | Server | A small HTTP service with one SQLite file. It stores opaque encrypted records and hands them out by sequence number. | A server that knows nothing about clips or snippets is easy to get right, easy to move and safe to lose (see [The epoch](#the-epoch)). |
-| Encryption | End to end. Every payload and blob is sealed with AES-GCM using a sync key that only your Macs have (in their Keychains). Record IDs are HMACs. | Clips contain passwords and tokens. The server and its backups only ever hold ciphertext. |
+| Encryption | End to end. Every payload and blob is sealed with AES-GCM using a sync key that only your devices have (in their Keychains). Record IDs are HMACs. | Clips contain passwords and tokens. The server and its backups only ever hold ciphertext. |
 | Auth | One bearer token, on top of whatever network restriction you put in front of the server. | The token keeps strangers from writing junk. Confidentiality comes from the sync key, not the token. |
 | Change tracking | SQLite triggers write to a `syncRecord` table. The store methods stay as they are, apart from the explicit delete of a clip, a link or an action. | The triggers catch every write path (recording, palette, editor, importers, future code) without editing them. |
 | Default | Off. The Sync module is switched on per Mac. | With sync off, the only difference is the triggers' bookkeeping rows. |
@@ -514,7 +514,7 @@ The failure texts come from `SyncEngineError.description` (the menu uses the sho
 
 | Error | Settings text | Menu |
 | --- | --- | --- |
-| Server not reachable | "Server unreachable — is Tailscale connected?" | "server unreachable" |
+| Server not reachable | "Server unreachable — check your network or VPN" | "server unreachable" |
 | 401 | "Token rejected" | "token rejected" |
 | A record does not open | "Sync key doesn't match" | "sync key doesn't match" |
 | Newer payload version | "Update Cortex on this Mac" | "update Cortex on this Mac" |

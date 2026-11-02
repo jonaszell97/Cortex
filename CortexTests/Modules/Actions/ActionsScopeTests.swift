@@ -345,6 +345,11 @@ import CortexCore
         #expect(!ResolvedActionInput.pasteboard(board.pasteboard).isSensitive)
     }
 
+    @Test func textThatLooksLikeAKeyIsSensitive() {
+        board.write([(.string, Data("q8Zr3TfL0pW7xYv2Nc5Ka9Hd".utf8))])
+        #expect(ResolvedActionInput.pasteboard(board.pasteboard).isSensitive)
+    }
+
     @Test func imageResultsGoOnThePasteboardAsPNGAndTIFF() {
         Paster.write(image: imageData(.png), recording: .record(sensitive: false), to: board.pasteboard)
         let types = Set((board.pasteboard.types ?? []).map(\.rawValue))

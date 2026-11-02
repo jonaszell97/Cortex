@@ -62,7 +62,8 @@ The service answers with text, JSON or a base64 picture. Requests time out after
 
 ### Sensitive content
 
-- **Sensitive clips are never sent.** A clip or pasteboard marked sensitive (a password manager's copy, or text that looks like a token) is input that `>` does not list Proofread and Summarize for, and `ActionsService.run` refuses it whatever the way in: nothing is sent, and a notification says "The input is marked sensitive, so it is not sent anywhere."
+- **Sensitive input is not sent.** A sensitive clip, or a pasteboard or selection that the writing app marks as concealed or that looks like a password or token, is input that `>` does not list Proofread and Summarize for, and `ActionsService.run` refuses it whatever the way in: nothing is sent, and a notification says "The input is marked sensitive, so it is not sent anywhere."
+- **What the pasteboard can't tell.** The history also flags copies by the app they came from, but the pasteboard doesn't say which app that was. A copy from a password manager that doesn't mark it, of text that doesn't look like a password, is only sensitive as a clip from the history.
 - **The `$` forms never suggest it.** The clipboard suggestion in the `$ask`, `$img`, `$note` and `$todo` forms is left out when the pasteboard is sensitive, and the recent-clip lookups leave sensitive clips out.
 - **Typed text is sent as typed.** What you type after `$ask` or `$img` is never marked sensitive, so Cortex does not check it. `$note` and `$todo` refuse typed text that looks like a password or key ("It looks like a password or key, so it is not sent to OpenAI. Save it with ? instead."), and `$tidy` leaves such inbox items out.
 - **Shortcuts.** Text passed in by a shortcut is not a clip and has no sensitive mark, so it is sent.

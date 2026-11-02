@@ -54,7 +54,7 @@ struct JoinView: View {
                         .foregroundStyle(.red)
                         .multilineTextAlignment(.center)
                 }
-                Text("On a Mac: Settings → Sync → Show Pairing Code. The code holds the sync key, and the server must be reachable (Tailscale on).")
+                Text("On a Mac: Settings → Sync → Show Pairing Code. The code holds the sync key, and the server must be reachable from this iPhone.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)

@@ -64,7 +64,7 @@ Commands that run on what you type: `$port 3000` shows what listens on a port an
 
 ![The Ask AI form with a question typed in](docs/images/ai.webp)
 
-Off by default. With your OpenAI API key, Proofread and Summarize join the quick actions, `$ask` answers a question and `$img` draws a picture. Nothing is sent before ⏎, and sensitive clips never are. Settings shows the tokens used and an estimate of what they cost.
+Off by default. With your OpenAI API key, Proofread and Summarize join the quick actions, `$ask` answers a question and `$img` draws a picture. Nothing is sent before ⏎, and AI actions aren't offered for clips marked sensitive. Settings shows the tokens used and an estimate of what they cost.
 
 [More about AI actions →](docs/modules/AI.md)
 
@@ -136,7 +136,7 @@ Screenshots in your history are found by the text in them, read on your Mac by A
 
 ![The Sync settings with Set up this Mac and Join with pairing code](docs/images/sync.webp)
 
-Off by default. Keeps clips, snippets, the reading list, notes and your quick actions in step between two Macs, through a small server you run yourself ([`sync-server/`](sync-server/README.md)). Everything is encrypted before it leaves the Mac, with a key only your Macs have, and nothing waits for the server.
+Off by default. Keeps clips, snippets, the reading list, notes and your quick actions in step between two Macs, through a small server you run yourself ([`sync-server/`](sync-server/README.md)). Everything is encrypted before it leaves the Mac, with a key only your devices have, and nothing waits for the server.
 
 [More about sync →](docs/modules/SYNC.md)
 
