@@ -1,0 +1,27 @@
+# An example of running the Cortex sync server with Docker Compose (docs/SYNC.md, "Deployment").
+# SYNC_TOKEN comes from the environment, never from this file, and the server refuses to start
+# without one (app/config.py). The server speaks plain HTTP on port 8000, so put a TLS reverse
+# proxy in front of it.
+services:
+  sync:
+    build: .
+    restart: unless-stopped
+    expose:
+      - 8000
+    environment:
+      SYNC_TOKEN: ${SYNC_TOKEN:-}
+      DATA_DIR: /data
+      PRUNE_CLIP_DAYS: ${PRUNE_CLIP_DAYS:-60}
+      MAX_BLOB_MB: ${MAX_BLOB_MB:-32}
+      MAX_STORAGE_MB: ${MAX_STORAGE_MB:-2048}
+    volumes:
+      - sync-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/v1/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  sync-data:

@@ -1,0 +1,29 @@
+{
+  "description": "Blobs: ask which are missing, upload those, a repeated upload is a no-op, download by ID, 404 for unknown IDs.",
+  "steps": [
+    {
+      "request": { "method": "POST", "path": "/v1/blobs/missing", "json": { "ids": ["a17e0000000000000000000000000001", "a17e0000000000000000000000000002"] } },
+      "response": { "status": 200, "json": { "missing": ["a17e0000000000000000000000000001", "a17e0000000000000000000000000002"], "epoch": "<epoch>" } }
+    },
+    {
+      "request": { "method": "PUT", "path": "/v1/blobs/a17e0000000000000000000000000001", "bodyBase64": "c2VhbGVkIGJ5dGVz" },
+      "response": { "status": 200, "json": { "stored": true, "epoch": "<epoch>" } }
+    },
+    {
+      "request": { "method": "PUT", "path": "/v1/blobs/a17e0000000000000000000000000001", "bodyBase64": "b3RoZXI=" },
+      "response": { "status": 200, "json": { "stored": false, "epoch": "<epoch>" } }
+    },
+    {
+      "request": { "method": "POST", "path": "/v1/blobs/missing", "json": { "ids": ["a17e0000000000000000000000000001", "a17e0000000000000000000000000002"] } },
+      "response": { "status": 200, "json": { "missing": ["a17e0000000000000000000000000002"], "epoch": "<epoch>" } }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/blobs/a17e0000000000000000000000000001" },
+      "response": { "status": 200, "bodyBase64": "c2VhbGVkIGJ5dGVz" }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/blobs/a17e0000000000000000000000000002" },
+      "response": { "status": 404, "json": { "detail": "<any>" } }
+    }
+  ]
+}

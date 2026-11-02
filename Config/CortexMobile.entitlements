@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- The data directory (database, knowledge folder), shared with the
+	     share and widget extensions (CortexExtension.entitlements). Must
+	     match CortexAppGroup in CortexMobile-Info.plist. -->
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.$(BUNDLE_ID_PREFIX).cortex</string>
+	</array>
+	<!-- New Keychain items (sync key, token, database key) go to the first
+	     group. The extensions don't have it: they never open the database. -->
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)$(BUNDLE_ID_PREFIX).cortex</string>
+	</array>
+</dict>
+</plist>

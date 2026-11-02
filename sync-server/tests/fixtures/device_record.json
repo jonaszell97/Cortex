@@ -1,0 +1,90 @@
+{
+  "description": "A device record (plans/IOS.md, M6): each device keeps one record in the `device` collection, replaced by its next report; another device can forget it with a tombstone, and its next report brings it back.",
+  "steps": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/v1/push",
+        "json": {
+          "device": "mac-a",
+          "records": [
+            { "collection": "device", "id": "de7c0000000000000000000000000001", "modifiedAt": 1792483200000, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "cmVwb3J0MQ==" }
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "results": [ { "collection": "device", "id": "de7c0000000000000000000000000001", "status": "applied", "seq": 1 } ],
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/changes?since=0&limit=10" },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [
+            { "collection": "device", "id": "de7c0000000000000000000000000001", "seq": 1, "modifiedAt": 1792483200000, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "cmVwb3J0MQ==" }
+          ],
+          "cursor": 1,
+          "more": false,
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/v1/push",
+        "json": {
+          "device": "iphone",
+          "records": [
+            { "collection": "device", "id": "de7c0000000000000000000000000001", "modifiedAt": 1792483300000, "device": "iphone", "deleted": true, "keep": false, "blobs": [], "payload": "dG9tYnN0b25l" }
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "results": [ { "collection": "device", "id": "de7c0000000000000000000000000001", "status": "applied", "seq": 2 } ],
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/v1/push",
+        "json": {
+          "device": "mac-a",
+          "records": [
+            { "collection": "device", "id": "de7c0000000000000000000000000001", "modifiedAt": 1792483400000, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "cmVwb3J0Mg==" }
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "results": [ { "collection": "device", "id": "de7c0000000000000000000000000001", "status": "applied", "seq": 3 } ],
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/changes?since=1&limit=10" },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [
+            { "collection": "device", "id": "de7c0000000000000000000000000001", "seq": 3, "modifiedAt": 1792483400000, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "cmVwb3J0Mg==" }
+          ],
+          "cursor": 3,
+          "more": false,
+          "epoch": "<epoch>"
+        }
+      }
+    }
+  ]
+}

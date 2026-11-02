@@ -1,0 +1,96 @@
+{
+  "description": "Paging by cursor: records with seq > since in seq order, `more` while a page is full and more follow, the cursor stays put when nothing is new.",
+  "steps": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/v1/push",
+        "json": {
+          "device": "mac-a",
+          "records": [
+            { "collection": "clip", "id": "00000000000000000000000000000001", "modifiedAt": 1792483200001, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "MQ==" },
+            { "collection": "clip", "id": "00000000000000000000000000000002", "modifiedAt": 1792483200002, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "Mg==" },
+            { "collection": "clip", "id": "00000000000000000000000000000003", "modifiedAt": 1792483200003, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "Mw==" }
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "results": [
+            { "collection": "clip", "id": "00000000000000000000000000000001", "status": "applied", "seq": 1 },
+            { "collection": "clip", "id": "00000000000000000000000000000002", "status": "applied", "seq": 2 },
+            { "collection": "clip", "id": "00000000000000000000000000000003", "status": "applied", "seq": 3 }
+          ],
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/changes?since=0&limit=2" },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [
+            { "collection": "clip", "id": "00000000000000000000000000000001", "seq": 1, "modifiedAt": 1792483200001, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "MQ==" },
+            { "collection": "clip", "id": "00000000000000000000000000000002", "seq": 2, "modifiedAt": 1792483200002, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "Mg==" }
+          ],
+          "cursor": 2,
+          "more": true,
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/changes?since=2&limit=2" },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [
+            { "collection": "clip", "id": "00000000000000000000000000000003", "seq": 3, "modifiedAt": 1792483200003, "device": "mac-a", "deleted": false, "keep": false, "blobs": [], "payload": "Mw==" }
+          ],
+          "cursor": 3,
+          "more": false,
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/changes?since=3&limit=2" },
+      "response": { "status": 200, "json": { "records": [], "cursor": 3, "more": false, "epoch": "<epoch>" } }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/v1/push",
+        "json": {
+          "device": "mac-b",
+          "records": [
+            { "collection": "clip", "id": "00000000000000000000000000000001", "modifiedAt": 1792483200009, "device": "mac-b", "deleted": false, "keep": true, "blobs": [], "payload": "MSE=" }
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "results": [ { "collection": "clip", "id": "00000000000000000000000000000001", "status": "applied", "seq": 4 } ],
+          "epoch": "<epoch>"
+        }
+      }
+    },
+    {
+      "request": { "method": "GET", "path": "/v1/changes?since=3" },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [
+            { "collection": "clip", "id": "00000000000000000000000000000001", "seq": 4, "modifiedAt": 1792483200009, "device": "mac-b", "deleted": false, "keep": true, "blobs": [], "payload": "MSE=" }
+          ],
+          "cursor": 4,
+          "more": false,
+          "epoch": "<epoch>"
+        }
+      }
+    }
+  ]
+}

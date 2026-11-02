@@ -1,0 +1,135 @@
+{
+  "id": "5f1a2b3c4d5e6f7a8b9c0d1e",
+  "name": "Server",
+  "desc": "The home server",
+  "closed": false,
+  "url": "https://trello.com/b/AbCdEf12/server",
+  "labels": [
+    {"id": "lab1", "idBoard": "5f1a2b3c4d5e6f7a8b9c0d1e", "name": "Urgent", "color": "red"},
+    {"id": "lab2", "idBoard": "5f1a2b3c4d5e6f7a8b9c0d1e", "name": "", "color": "green"},
+    {"id": "lab3", "idBoard": "5f1a2b3c4d5e6f7a8b9c0d1e", "name": "Docker Compose", "color": "blue"}
+  ],
+  "lists": [
+    {"id": "list1", "name": "To Do", "closed": false, "pos": 16384},
+    {"id": "list2", "name": "In Progress", "closed": false, "pos": 32768},
+    {"id": "list3", "name": "Erledigt ✅", "closed": false, "pos": 49152},
+    {"id": "list4", "name": "Old ideas", "closed": true, "pos": 65536}
+  ],
+  "cards": [
+    {
+      "id": "6530f2a0aaaaaaaaaaaaaaaa",
+      "name": "Fix the restic backup",
+      "desc": "The nightly run has been failing since the volume move.",
+      "closed": false,
+      "idList": "list2",
+      "idLabels": ["lab1"],
+      "labels": [{"id": "lab1", "name": "Urgent", "color": "red"}],
+      "idChecklists": ["check1", "check2"],
+      "due": "2026-10-30T11:00:00.000Z",
+      "dueComplete": false,
+      "dateLastActivity": "2026-10-20T09:30:00.000Z",
+      "pos": 2,
+      "attachments": [
+        {"id": "att1", "name": "restic log", "url": "https://trello.com/1/cards/6530f2a0/attachments/att1/download/restic.log", "isUpload": true}
+      ]
+    },
+    {
+      "id": "6530f2a0bbbbbbbbbbbbbbbb",
+      "name": "Update Traefik",
+      "desc": "",
+      "closed": false,
+      "idList": "list1",
+      "idLabels": ["lab2", "lab3"],
+      "labels": [{"id": "lab2", "name": "", "color": "green"}, {"id": "lab3", "name": "Docker Compose", "color": "blue"}],
+      "idChecklists": [],
+      "due": null,
+      "dueComplete": false,
+      "dateLastActivity": "2026-10-01T08:00:00.000Z",
+      "pos": 1,
+      "attachments": []
+    },
+    {
+      "id": "6530f2a0cccccccccccccccc",
+      "name": "Install Tailscale",
+      "desc": "Done in **September**.",
+      "closed": false,
+      "idList": "list3",
+      "idLabels": [],
+      "labels": [],
+      "idChecklists": [],
+      "due": null,
+      "dueComplete": false,
+      "dateLastActivity": "2026-09-15T08:00:00.000Z",
+      "pos": 1,
+      "attachments": []
+    },
+    {
+      "id": "6530f2a0dddddddddddddddd",
+      "name": "Try Kubernetes",
+      "desc": "",
+      "closed": true,
+      "idList": "list1",
+      "idLabels": [],
+      "labels": [],
+      "idChecklists": [],
+      "due": null,
+      "dueComplete": false,
+      "dateLastActivity": "2026-08-01T08:00:00.000Z",
+      "pos": 3,
+      "attachments": []
+    },
+    {
+      "id": "6530f2a0eeeeeeeeeeeeeeee",
+      "name": "Fix the restic backup",
+      "desc": "A second card with the same name.",
+      "closed": false,
+      "idList": "list4",
+      "idLabels": [],
+      "labels": [],
+      "idChecklists": [],
+      "due": null,
+      "dueComplete": false,
+      "dateLastActivity": "2026-07-01T08:00:00.000Z",
+      "pos": 1,
+      "attachments": []
+    },
+    {
+      "id": "6530f2a0ffffffffffffffff",
+      "name": "Renew the domain",
+      "desc": "",
+      "closed": false,
+      "idList": "list1",
+      "idLabels": [],
+      "labels": [],
+      "idChecklists": [],
+      "due": "2026-09-01T10:00:00.000Z",
+      "dueComplete": true,
+      "dateLastActivity": "2026-09-01T10:00:00.000Z",
+      "pos": 4,
+      "attachments": []
+    }
+  ],
+  "checklists": [
+    {
+      "id": "check2",
+      "idCard": "6530f2a0aaaaaaaaaaaaaaaa",
+      "name": "Afterwards",
+      "pos": 32768,
+      "checkItems": [
+        {"id": "ci4", "name": "write it down", "state": "incomplete", "pos": 16384}
+      ]
+    },
+    {
+      "id": "check1",
+      "idCard": "6530f2a0aaaaaaaaaaaaaaaa",
+      "name": "Checklist",
+      "pos": 16384,
+      "checkItems": [
+        {"id": "ci2", "name": "rotate the S3 key", "state": "incomplete", "pos": 32768},
+        {"id": "ci1", "name": "check the cron log", "state": "complete", "pos": 16384},
+        {"id": "ci3", "name": "run once by hand", "state": "incomplete", "pos": 49152}
+      ]
+    }
+  ],
+  "actions": []
+}

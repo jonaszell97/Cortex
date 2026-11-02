@@ -1,0 +1,13 @@
+// Copy to Local.xcconfig (untracked) and fill in.
+// Team ID: the OU field of your "Apple Development" certificate, or
+// Xcode → Settings → Accounts → team details.
+
+DEVELOPMENT_TEAM = ABCDE12345
+BUNDLE_ID_PREFIX = com.example
+// Optional: a different prefix for the Mac app only, if the Mac app was first
+// installed under another bundle ID (changing it resets permissions and settings).
+// MAC_BUNDLE_ID_PREFIX = com.example
+
+// make install-ios: the iPhone to install on (a name or UDID from
+// `xcrun devicectl list devices`). Optional.
+// IOS_DEVICE = 00008160-0000000000000000

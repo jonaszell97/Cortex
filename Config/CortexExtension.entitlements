@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- The iPhone app's data directory (CortexMobile.entitlements): the
+	     extensions write knowledge files and the reading list's outbox
+	     there, and read the widgets' snapshot. No Keychain group: they
+	     never open the database. -->
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.$(BUNDLE_ID_PREFIX).cortex</string>
+	</array>
+</dict>
+</plist>

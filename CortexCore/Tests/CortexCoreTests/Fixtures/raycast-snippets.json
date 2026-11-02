@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Signature",
+    "text": "Best regards\nAlex",
+    "keyword": ";sig"
+  },
+  {
+    "name": "Meeting notes",
+    "text": "# Meeting {date format=\"yyyy-MM-dd\"}\n\nWith: {argument name=\"Attendees\"}\n\n{cursor}",
+    "keyword": ";mtg"
+  },
+  {
+    "name": "Address",
+    "text": "Musterstraße 1\n12345 Berlin"
+  },
+  {
+    "name": "Empty keyword",
+    "text": "No keyword here",
+    "keyword": ""
+  },
+  {
+    "name": "signature",
+    "text": "Duplicate name, different case",
+    "keyword": ";sig2"
+  },
+  {
+    "name": "",
+    "text": "No name"
+  },
+  {
+    "name": "Quote selection",
+    "text": "> {selection}",
+    "keyword": ";q"
+  },
+  {
+    "name": "Taken keyword",
+    "text": "Wants a keyword another snippet has",
+    "keyword": ";old"
+  }
+]

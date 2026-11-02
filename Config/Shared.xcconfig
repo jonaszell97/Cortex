@@ -1,0 +1,13 @@
+// Settings shared by all targets. Machine-specific values (team ID, bundle ID
+// prefix) live in the untracked Local.xcconfig next to this file; copy
+// Local.xcconfig.example to get started.
+
+BUNDLE_ID_PREFIX = local.cortex
+// The Mac app's prefix (app, cortex-mcp, tests). Follows BUNDLE_ID_PREFIX unless
+// Local.xcconfig sets it: a Mac whose installed app already has another bundle
+// ID keeps its permissions and settings that way, while the iPhone app (and its
+// App Group) stays on BUNDLE_ID_PREFIX.
+MAC_BUNDLE_ID_PREFIX = $(BUNDLE_ID_PREFIX)
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"
