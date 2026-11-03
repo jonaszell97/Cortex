@@ -68,6 +68,7 @@ func makeLayoutPNG(_ items: [(text: String, x: CGFloat, top: CGFloat)], fontSize
         return makeLayoutPNG(items, width: 1200, height: 420)
     }
 
+    @available(macOS 26, *)
     @Test func columnsAreReadOneAfterTheOther() async throws {
         let text = try await TextRecognizer().recognizeCapture(Self.article, joinLines: false)
         let leftEnd = try #require(text.range(of: "become searchable."))
@@ -77,12 +78,14 @@ func makeLayoutPNG(_ items: [(text: String, x: CGFloat, top: CGFloat)], fontSize
         #expect(!text.contains("\t"))
     }
 
+    @available(macOS 26, *)
     @Test func linesOfAParagraphCanBeJoined() async throws {
         let text = try await TextRecognizer().recognizeCapture(Self.article, joinLines: true)
         #expect(text.contains("Screenshots in the history become searchable."))
         #expect(text.contains("The capture hotkey copies the words of a region as a new clip, like a colour picked with the eyedropper."))
     }
 
+    @available(macOS 26, *)
     @Test func aTableBecomesTabSeparatedRows() async throws {
         let rows = [["Name", "Size", "Kind"], ["Cortex.app", "48 MB", "Application"], ["notes.txt", "2 KB", "Text"], ["Screenshot.png", "1.2 MB", "Image"]]
         var items: [(text: String, x: CGFloat, top: CGFloat)] = []

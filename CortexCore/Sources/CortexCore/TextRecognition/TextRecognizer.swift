@@ -61,6 +61,12 @@ public struct TextRecognizer: TextRecognizing {
         RecognizeTextRequest().supportedRecognitionLanguages
     }
 
+    /// Whether captures are read as documents, which takes macOS 26. Before
+    /// that they are read line by line, and `joinLines` has no effect.
+    public static var readsDocuments: Bool {
+        if #available(macOS 26, *) { true } else { false }
+    }
+
     public func recognize(_ image: Data) async throws -> String {
         RecognizedLines.text(from: try await boxes(in: image))
     }
@@ -68,12 +74,13 @@ public struct TextRecognizer: TextRecognizing {
     /// A capture that fits one tile (nearly every one) is read with
     /// `RecognizeDocumentsRequest`, which knows columns, paragraphs and
     /// tables; it cannot be tiled, since a paragraph or table would be cut.
-    /// A larger one is read like any image, line by line.
+    /// A larger one, or any on a system without it, is read like any image,
+    /// line by line.
     public func recognizeCapture(_ image: Data, joinLines: Bool) async throws -> String {
         guard let source = CGImageSourceCreateWithData(image as CFData, nil),
               let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil)
         else { throw TextRecognitionError.unreadableImage }
-        guard cgImage.width <= Self.tileSize, cgImage.height <= Self.tileSize else {
+        guard #available(macOS 26, *), cgImage.width <= Self.tileSize, cgImage.height <= Self.tileSize else {
             return try await recognize(image)
         }
         var request = RecognizeDocumentsRequest()

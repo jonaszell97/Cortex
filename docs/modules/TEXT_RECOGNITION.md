@@ -41,7 +41,7 @@ Settings → Text Recognition (the page also has the Enabled switch, off by defa
 | Option | Default | Meaning |
 | --- | --- | --- |
 | Capture text (hotkey) | ⌃⌥⌘T | Starts a capture. |
-| Join the lines of a paragraph | off | Off, line breaks are kept as on screen. On, the lines of a paragraph become one, joined with spaces; a line that ends with a hyphen is joined without one. |
+| Join the lines of a paragraph | off | Off, line breaks are kept as on screen. On, the lines of a paragraph become one, joined with spaces; a line that ends with a hyphen is joined without one. Needs macOS 26; not listed before that. |
 | Show a notification after capturing | on | "Copied n lines". *No text found* and errors are always shown. |
 | Language | Automatic | Automatic detects the language and prefers the languages of this Mac. Otherwise one of the languages Vision supports. Also used by *Recognize Text*. |
 
@@ -83,7 +83,7 @@ The recognizer is in CortexCore and has no AppKit, so it is tested with `make te
 
 **Tiles.** Vision scales an image down until its longer side fits its model, so a whole screenshot loses its small text (on a 5K screen nearly all text under 20 pixels). An image larger than 1200 pixels on either side is therefore read in overlapping 1200 pixel tiles (300 pixels of overlap). Each tile keeps the words, with Vision's per-word boxes, whose centre lies in its own part of the image, so a line that crosses a seam comes back whole and nothing is read twice. An image with an EXIF orientation other than up (a photo) is read whole, with that orientation.
 
-**Documents.** `RecognizeDocumentsRequest` (macOS 26) knows columns, paragraphs and tables, but cannot be tiled, because a paragraph or table would be cut. The capture and the quick action use it for images that fit one tile (at most 1200 pixels on both sides, nearly every capture); a larger one goes through the tiles. The index uses the line-based reading, which does not need it.
+**Documents.** `RecognizeDocumentsRequest` (macOS 26) knows columns, paragraphs and tables, but cannot be tiled, because a paragraph or table would be cut. The capture and the quick action use it for images that fit one tile (at most 1200 pixels on both sides, nearly every capture); a larger one goes through the tiles. The index uses the line-based reading, which does not need it. Before macOS 26 captures and the quick action go through the line-based reading too (`TextRecognizer.readsDocuments`): columns are read across, row by row, and a table cell is separated by a tab only where the gap is wide.
 
 **The capture.** `TextRecognitionModule.capture()` closes the palette if it is open, checks the permission, asks `ScreenCapturing` for a PNG (nil after Esc), reads it with `recognizeCapture(_:joinLines:)`, and trims the result. The text is delivered with `closeAndDeliver(.text(text), .copyOnly, recording: .record(sensitive: …), restoringPasteboard: false, after: nil)` like the Color Picker does, so it becomes a clip from Cortex, with or without the Clipboard module on. The module does not name the Clipboard module; it asks `ClipboardAPI.detectsSensitiveText` whether to run the detector.
 

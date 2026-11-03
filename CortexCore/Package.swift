@@ -15,7 +15,7 @@ import PackageDescription
 let package = Package(
     name: "CortexCore",
     platforms: [
-        .macOS(.v26),
+        .macOS(.v15),
         .iOS(.v26),
     ],
     products: [

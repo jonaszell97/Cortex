@@ -57,11 +57,11 @@ final class TextRecognitionModule: CortexModule, CommandContributing, ActionCont
                 return (value: language.maximalIdentifier, title: title)
             }
             .sorted { $0.title.localizedStandardCompare($1.title) == .orderedAscending }
-        return [
-            ModuleOption(
-                id: "joinLines", title: "Join the lines of a paragraph",
-                help: "Off, the line breaks are kept as on screen.",
-                kind: .toggle(settings.joinLines)),
+        let joinLines = ModuleOption(
+            id: "joinLines", title: "Join the lines of a paragraph",
+            help: "Off, the line breaks are kept as on screen.",
+            kind: .toggle(settings.joinLines))
+        return (TextRecognizer.readsDocuments ? [joinLines] : []) + [
             ModuleOption(id: "notify", title: "Show a notification after capturing", kind: .toggle(settings.notify)),
             ModuleOption(
                 id: "language", title: "Language",

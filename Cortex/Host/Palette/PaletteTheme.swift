@@ -66,7 +66,7 @@ private struct PalettePane: ViewModifier {
     func body(content: Content) -> some View {
         switch style {
         case .classic:
-            content.glassEffect(.regular, in: .rect(cornerRadius: 20))
+            content.glassPane(cornerRadius: 20)
         case .glass:
             // Circular corners, to match the frosted backdrop's mask exactly.
             let radius: CGFloat = 26

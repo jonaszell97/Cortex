@@ -4,6 +4,7 @@ What the automated tests cannot cover: how real apps read the pasteboard and rea
 
 - before calling a phase done,
 - after every macOS update (including point releases),
+- on macOS 15, the oldest supported version, before a release (it has no Liquid Glass: the Classic palette and the progress card are frosted instead),
 - after changing anything in `Cortex/Host/Palette/`, `Cortex/Host/Pasting/`, `Cortex/Host/StatusMenu/`, `Cortex/Host/Settings/`, or a module in `Cortex/Modules/` (the checks of that module: M14–M17 for Snippets, M25 for the Reading List, M29–M31 for the Knowledge base, M18 for Quick Actions, M23 for Commands, M24 for AI, M20 for Scrolling, M21 and M22 for Emoji and Symbols, M28 for the Calculator, M26 for the Color Picker, M27 for Text Recognition, most of M2–M11 for Clipboard),
 - for [M19](#m19-sync), after changing anything in `Cortex/Modules/Sync/`, a module's sync contribution, `CortexCore/Sources/CortexCore/Sync/` (or a `…+Sync.swift` handler next to a store) or `sync-server/`.
 
@@ -376,7 +377,7 @@ Capturing text (Text Recognition module, off by default):
 6. Switch on Settings → Text Recognition. Settings → General → Permissions lists *Screen Recording*. Press ⌃⌥⌘T before granting it: an alert explains and opens System Settings; nothing else happens. Grant it, quit and open Cortex.
 7. ⌃⌥⌘T over Safari: the system crosshair appears. Drag over a paragraph: a notification says "Copied n lines" with the first line, and the text is the newest clip (from Cortex). Press Space during the selection and click a window: its text is copied. Esc: nothing copied, no notification.
 8. Capture a region with no text (a photo): a notification says *No text found*; the clipboard is unchanged.
-9. Capture two columns of an article, and a table (Numbers, or a web table): the columns come one after the other, and the table pastes into Numbers cell by cell. Turn on *Join the lines of a paragraph*: a wrapped paragraph comes out as one line, a word broken with a hyphen is whole again.
+9. Capture two columns of an article, and a table (Numbers, or a web table): the columns come one after the other, and the table pastes into Numbers cell by cell. Turn on *Join the lines of a paragraph*: a wrapped paragraph comes out as one line, a word broken with a hyphen is whole again. On macOS 15: the setting is not listed, and text is read across the columns, line by line.
 10. Capture the whole of a large display (drag across it): small sidebar and menu text is in the result. Note whether the first capture after a new build of Cortex takes noticeably long (Vision preparing its model).
 11. Press ⌃⌥⌘T again while the crosshair shows: nothing changes. With the palette open, choose *Capture Text* in the status menu: the palette closes first. `$ocr` in the palette: the crosshair appears at once, with no progress card.
 12. ⌘K on an image clip: *Recognize Text* is offered, ⏎ pastes its text. Select two PNGs in Finder and run it from `>`: their texts, one after the other.

@@ -6,6 +6,7 @@ import Vision
 /// its reading order (which reads columns one after the other), each table
 /// as tab-separated rows where it starts.
 enum DocumentText {
+    @available(macOS 26, *)
     static func text(of document: DocumentObservation.Container, joinLines: Bool) -> String {
         // Table cells are paragraphs too; they appear in their table only.
         var tables = document.tables.map { (bounds: $0.boundingRegion.boundingBox.cgRect, text: text(of: $0)) }
@@ -24,6 +25,7 @@ enum DocumentText {
         return blocks.filter { !$0.isEmpty }.joined(separator: "\n")
     }
 
+    @available(macOS 26, *)
     static func text(of table: DocumentObservation.Container.Table) -> String {
         table.rows
             .map { row in
@@ -32,6 +34,7 @@ enum DocumentText {
             .joined(separator: "\n")
     }
 
+    @available(macOS 26, *)
     static func text(of paragraph: DocumentObservation.Container.Text, joinLines: Bool) -> String {
         let lines = paragraph.lines.compactMap { $0.topCandidates(1).first?.string }
         guard !lines.isEmpty else { return paragraph.transcript }

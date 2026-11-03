@@ -38,3 +38,20 @@ struct FrostedBackdrop: NSViewRepresentable {
         return image
     }
 }
+
+extension View {
+    /// A pane of Liquid Glass. Before macOS 26, which does not have it, the
+    /// frosted surface of the glass style, with a faint rim to keep the edge
+    /// visible over windows of the same colour.
+    @ViewBuilder
+    func glassPane(cornerRadius: CGFloat) -> some View {
+        if #available(macOS 26, *) {
+            glassEffect(.regular, in: .rect(cornerRadius: cornerRadius))
+        } else {
+            let shape = RoundedRectangle(cornerRadius: cornerRadius)
+            background(FrostedBackdrop(cornerRadius: cornerRadius))
+                .clipShape(shape)
+                .overlay(shape.strokeBorder(.separator, lineWidth: 0.5))
+        }
+    }
+}

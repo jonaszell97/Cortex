@@ -150,7 +150,7 @@ Off by default. Natural scrolling on the trackpad and the classic direction on t
 
 ## Installation
 
-You need macOS 26, Xcode 27, [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`) and an Apple Development certificate, which keeps the Accessibility permission across updates.
+Cortex runs on macOS 15 or later. To build it you need Xcode 27, [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`) and an Apple Development certificate, which keeps the Accessibility permission across updates.
 
 **Do I need a paid Apple Developer Program membership?**
 

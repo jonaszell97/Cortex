@@ -146,7 +146,7 @@ struct ProgressCardView: View {
         .padding(Self.padding)
         .frame(width: Self.width, alignment: .top)
         .frame(maxHeight: .infinity, alignment: .top)
-        .glassEffect(.regular, in: .rect(cornerRadius: 18))
+        .glassPane(cornerRadius: 18)
     }
 }
 

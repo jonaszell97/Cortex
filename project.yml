@@ -6,7 +6,7 @@ name: Cortex
 
 options:
   deploymentTarget:
-    macOS: "26.0"
+    macOS: "15.0"
     iOS: "26.0"
   defaultSourceDirectoryType: syncedFolder
   createIntermediateGroups: true
@@ -20,8 +20,8 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     SWIFT_STRICT_CONCURRENCY: complete
-    MARKETING_VERSION: "0.1.0"
-    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "0.2.0"
+    CURRENT_PROJECT_VERSION: "2"
     CODE_SIGN_STYLE: Automatic
     CODE_SIGN_IDENTITY: Apple Development
     ENABLE_USER_SCRIPT_SANDBOXING: YES

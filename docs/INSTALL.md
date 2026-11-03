@@ -4,7 +4,7 @@ There is no download: you build Cortex from source and install the result into `
 
 ## Requirements
 
-- **macOS 26 or later.** The project and the `CortexCore` package both target macOS 26 and iOS 26 (`project.yml`, `CortexCore/Package.swift`).
+- **macOS 15 or later to run Cortex.** The project and the `CortexCore` package target macOS 15 and iOS 26 (`project.yml`, `CortexCore/Package.swift`). Building takes a macOS that can run the Xcode below.
 - **Xcode 27.** That is what Cortex is developed with. The minimum is whatever ships Swift 6.2 (the package's `swift-tools-version`) and the macOS 26 SDK. The first build also downloads the Swift packages it uses (KeyboardShortcuts, SQLCipher), so it needs network access.
 - **[XcodeGen](https://github.com/yonaskolb/XcodeGen)**: `brew install xcodegen`. `Cortex.xcodeproj` is generated from `project.yml` and not checked in.
 - **An Apple Development certificate and its team.** In Xcode: Settings → Accounts → sign in → Manage Certificates → + → Apple Development. A free Apple ID is enough for the Mac app (see [Apple Developer account](#apple-developer-account)). See below for why an ad-hoc build is not enough.
